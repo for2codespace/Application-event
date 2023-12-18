@@ -1,0 +1,89 @@
+.Header {
+    position: relative;
+    width: 100vw;
+    height: 170px;
+    display: flex;
+    align-items: center;
+}
+.links-container {
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    column-gap: 1em;
+    padding: 5px 10px;
+    box-sizing: border-box;
+}
+.link {
+    color: black;
+    text-decoration-color: #990033;
+    z-index: 100;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 5px;
+}
+.link:hover {
+    color: #990033;
+}
+.link::before {
+    display: block;
+    position: relative;
+    width: 1em;
+    height: 1em;
+    content: '';
+}
+.link[data-sign="call"]::before {
+    background: url('./icons/phone.svg') no-repeat;
+    background-size: 100%;
+
+}
+.link[data-sign="whatsapp"]::before {
+    background: url('./icons/whatsapp.png') no-repeat;
+    background-size: 100% 100%;
+}
+.Logo {
+    position: relative;
+    width: 220px;
+    height: 80px;
+    margin-left: 1em;
+    background: url("./logo.jpg") no-repeat;
+    background-size: contain;
+}
+.Title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: 500;
+    font-size: 30px;
+    color: #990033;
+}
+.Divider {
+    position: absolute;
+    left: 2.5%; width: 95%;
+    height: 1px;
+    background: darkgrey;
+}
+.Button-Container {
+    width: 100%;
+    padding: 1em 12.5%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    column-gap: normal;
+}
+.LinkButton {
+    cursor: pointer;
+    user-select: none;
+    padding: 5px 5px;
+    border-radius: 5px;
+    border: 1px solid darkgrey;
+    background: whitesmoke
+}
+.LinkButton:hover {
+    filter: brightness(0.95);
+}
+.LinkButton:active {
+    filter: brightness(0.9);
+}
