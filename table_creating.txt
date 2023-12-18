@@ -1,0 +1,315 @@
+--------------------создание таблиц-------------------------------------------------------------------------------------------------------------------------------------------
+--1. создание таблицы GROUP_LIST:
+CREATE TABLE GROUP_LIST (
+		GL_ID serial PRIMARY KEY,
+		GL_NAME	CHAR(50) NOT NULL,
+		GL_YEAR	TIMESTAMP NOT NULL
+);
+
+--2. создание таблицы STUDY_TYPE:
+CREATE TABLE STUDY_TYPE (
+		ST_ID serial PRIMARY KEY,
+		ST_TYPE	CHAR(50) NOT NULL
+);
+
+--3. создание таблицы STUDENT:
+CREATE TABLE STUDENT (
+		S_ID serial PRIMARY KEY,
+		S_SURNAME	CHAR(50) NOT NULL,
+		S_FIRSTNAME	CHAR(50) NOT NULL,
+		S_LASTNAME	CHAR(50) NOT NULL,
+		S_GROUP_ID	INT NOT NULL,
+		S_STUDY_TYPE_ID	INT NOT NULL
+);
+
+--4. создание таблицы INVOLVEMENT:
+CREATE TABLE INVOLVEMENT (
+		I_ID serial PRIMARY KEY,
+		I_EVENT_ID	INT NOT NULL,
+		I_STUDENT_ID	INT NOT NULL
+);
+
+--5. создание таблицы CALENDAR:
+CREATE TABLE CALENDAR (
+		C_ID serial PRIMARY KEY,
+		C_START_DATE	TIMESTAMP NOT NULL,
+		C_END_DATE	TIMESTAMP NOT NULL
+);
+
+--6. создание таблицы STUDENT_BOARD:
+CREATE TABLE STUDENT_BOARD (
+		SB_BOARD_ID serial PRIMARY KEY,
+		SB_CALENDAR_ID	INT NOT NULL,
+		SB_STUDENT_ID	INT NOT NULL,
+		SB_POSITION_ID INT NOT NULL
+);
+
+--7. создание таблицы EVENT_TYPE:
+CREATE TABLE EVENT_TYPE (
+		ET_ID serial PRIMARY KEY,
+		ET_NAME	CHAR(200) NOT NULL,
+		ET_LOCATION CHAR(50),
+		ET_CALENDAR_ID INT NOT NULL
+);
+
+--8. создание таблицы DIVISION_LIST:
+CREATE TABLE DIVISION_LIST (
+		DL_ID serial PRIMARY KEY,
+		DL_NAME	CHAR(50) NOT NULL,
+		DL_PARENT_DIVISION_ID INT
+);
+
+--9. создание таблицы STAFF_LIST:
+CREATE TABLE STAFF_LIST (
+		SL_ID serial PRIMARY KEY,
+		SL_FIRSTNAME	CHAR(50) NOT NULL,
+		SL_SURNAME	CHAR(50) NOT NULL,
+		SL_LASTNAME	CHAR(50) NOT NULL,
+		SL_DIVISION_ID INT NOT NULL,
+		SL_IS_WORKS	BOOLEAN NOT NULL
+);
+
+--10. создание таблицы EVENT_LIST:
+CREATE TABLE EVENT_LIST (
+		EL_ID serial PRIMARY KEY,
+		EL_C_START_DATE TIMESTAMP,
+		EL_C_END_DATE TIMESTAMP,
+		EL_GROUP_ID INT NOT NULL,
+		EL_STUDENT_ID INT NOT NULL,
+		EL_STAFF_ID INT NOT NULL
+);
+--------------------создание внешних ключей-------------------------------------------------------------------------------------------------------------------------------------------
+--Создание внешнего ключа в INVOLVEMENT к STUDENT:
+ALTER TABLE INVOLVEMENT ADD CONSTRAINT FK_I_STUDENT_ID FOREIGN KEY (I_STUDENT_ID) REFERENCES STUDENT (S_ID);
+
+--Создание внешнего ключа в STUDENT_BOARD к STUDENT:
+ALTER TABLE STUDENT_BOARD ADD CONSTRAINT FK_STUDENT_BOARD FOREIGN KEY (SB_STUDENT_ID) REFERENCES STUDENT (S_ID);
+
+--Создание внешнего ключа в EVENT_TYPE к CALENDAR:
+ALTER TABLE EVENT_TYPE ADD CONSTRAINT FK_EVENT_TYPE FOREIGN KEY (ET_CALENDAR_ID) REFERENCES CALENDAR (C_ID);
+
+--Создание внешнего ключа в STUDENT_BOARD к CALENDAR:
+ALTER TABLE STUDENT_BOARD ADD CONSTRAINT FK_SB_CALENDAR_ID FOREIGN KEY (SB_CALENDAR_ID) REFERENCES CALENDAR (C_ID);
+
+--Создание внешнего ключа в STUDENT к STUDY_TYPE:
+ALTER TABLE STUDENT ADD CONSTRAINT FK_S_STUDY_TYPE_ID FOREIGN KEY (S_STUDY_TYPE_ID) REFERENCES STUDY_TYPE (ST_ID);
+
+--Создание внешнего ключа в STUDENT к GROUP_LIST:
+ALTER TABLE STUDENT ADD CONSTRAINT FK_S_GROUP_ID FOREIGN KEY (S_GROUP_ID) REFERENCES GROUP_LIST (GL_ID);
+
+--Создание внешнего ключа в STAFF_LIST к DIVISION_LIST :
+ALTER TABLE STAFF_LIST ADD CONSTRAINT FK_SL_DIVISION_ID FOREIGN KEY (SL_DIVISION_ID) REFERENCES DIVISION_LIST (DL_ID);
+
+--Создание внешнего ключа в EVENT_LIST к GROUP_LIST :
+ALTER TABLE EVENT_LIST ADD CONSTRAINT FK_EL_GROUP_ID FOREIGN KEY (EL_GROUP_ID) REFERENCES GROUP_LIST (GL_ID);
+
+--Создание внешнего ключа в EVENT_LIST к STUDENT :
+ALTER TABLE EVENT_LIST ADD CONSTRAINT FK_EL_STUDENT_ID FOREIGN KEY (EL_STUDENT_ID) REFERENCES STUDENT (S_ID);
+
+--Создание внешнего ключа в EVENT_LIST к STAFF_LIST :
+ALTER TABLE EVENT_LIST ADD CONSTRAINT FK_EL_STAFF_ID FOREIGN KEY (EL_STAFF_ID) REFERENCES STAFF_LIST (SL_ID);
+
+
+-------наполнение таблиц------------------------------------------------------------------------------------------------------------------------------------------------
+--наполнение GROUP_LIST:
+INSERT INTO GROUP_LIST (GL_NAME, GL_YEAR) VALUES
+	('ГРУППА_1', '2019-09-01 10:00:00'),
+	('ГРУППА_2', '2020-09-01 10:00:00'),
+	('ГРУППА_3', '2020-09-01 10:00:00'),
+	('ГРУППА_4', '2020-09-01 10:00:00'),
+	('ГРУППА_5', '2021-09-01 10:00:00'),
+	('ГРУППА_6', '2020-09-01 10:00:00'
+);
+
+--наполнение STUDY_TYPE:
+INSERT INTO STUDY_TYPE (ST_TYPE) VALUES
+	('ОЧНАЯ'),
+	('ЗАОЧНАЯ'
+);
+
+--наполнение STUDENT:
+INSERT INTO STUDENT (S_SURNAME, S_FIRSTNAME, S_LASTNAME, S_GROUP_ID, S_STUDY_TYPE_ID) VALUES
+	('ПЕТРОВ', 'ПЕТР', 'ПЕТРОВИЧ', '1', '1'),
+	('ИВАНОВ', 'ИВАН', 'ИВАНОВИЧ', '2', '1'),
+	('КОСТИН', 'КОНСТАНТИН', 'КОНСТАНТИНОВИЧ', '3', '1'),
+	('ГОРДЕЕВ', 'ГОРДЕЙ', 'ГОРДЕЕВИЧ', '3', '1'),
+	('АЛЕКСЕЕВ', 'АЛЕКСЕЙ', 'АЛЕКСЕЕВИЧ', '4', '1'),
+	('АНДРЕЕВ', 'АНДРЕЙ', 'АНДРЕЕВИЧ', '2', '1'),
+	('КОСТИН', 'КОНСТАНТИН', 'КОНСТАНТИНОВИЧ', '1', '1'),
+	('МИХАЙЛОВ', 'МИХАИЛ', 'МИХАЙЛОВИЧ', '5', '1'),
+	('АЛЕКСАНДРОВА', 'АЛЕКСАНДРА', 'АЛЕКСАНДРОВНА', '2', '1'),
+	('СЕРГЕЕВ', 'СЕРГЕЙ', 'СЕРГЕЕВИЧ', '3', '1'),
+	('ОЛЕГОВ', 'ОЛЕГ', 'ОЛЕГОВИЧ', '1', '1'),
+	('КОСТИН', 'КОНСТАНТИН', 'КОНСТАНТИНОВИЧ', '2', '1'),
+	('ЕВГЕНЬЕВ', 'ЕВГЕНИЙ', 'ЕВГЕНЬЕВИЧ', '6', '2'),
+	('ВИКТОРИНА', 'ВИКТОРИЯ', 'ВИКТОРОВНА', '6', '2'),
+	('ВЛАДИМИРОВ', 'ВЛАДИМИР', 'ВЛАДИМИРОВИЧ', '5', '1'),
+	('АРТЕМОВ', 'АРТЕМ', 'АРТЕМОВИЧ', '6', '2'),
+	('ВАЛЕРЬЕВ', 'ВАЛЕРИЙ', 'ВАЛЕРЬЕВИЧ', '1', '1'),
+	('АНТОНОВ', 'АНТОН', 'АНТОНОВИЧ', '3', '1'),
+	('ГРИГОРЬЕВ', 'ГРИГОРИЙ', 'ГРИГОРЬЕВИЧ', '3', '1'),
+	('МАКСИМОВ', 'МАКСИМ', 'МАКСИМОВИЧ', '3', '1'
+);
+
+--наполнение таблицы INVOLVEMENT:
+INSERT INTO INVOLVEMENT (I_EVENT_ID, I_STUDENT_ID) VALUES
+	(1, 1),
+	(1, 2),
+	(1, 3),
+	(1, 4),
+	(1, 5),
+	(1, 6),
+	(1, 7),
+	(1, 8),
+	(1, 9),
+	(1, 10),
+	(1, 11),
+	(1, 12),
+	(1, 13),
+	(1, 14),
+	(1, 15),
+	(1, 16),
+	(1, 17),
+	(1, 18),
+	(1, 19),
+	(1, 20
+);
+
+--наполнение CALENDAR:
+INSERT INTO CALENDAR (C_START_DATE, C_END_DATE) VALUES
+	('2019-09-10 15:00:00', '2019-09-10 18:00:00'),
+	('2019-10-10 15:00:00', '2019-10-10 18:00:00'),
+	('2020-11-16 12:00:00', '2020-11-16 14:00:00'),
+	('2020-12-29 16:00:00', '2020-12-29 18:00:00'),
+	('2021-09-03 17:00:00', '2021-09-03 19:00:00'),
+	('2021-10-04 14:00:00', '2021-10-04 16:00:00'),
+	('2021-11-11 17:00:00', '2021-11-11 18:00:00'),
+	('2021-04-12 16:00:00', '2021-04-12 18:00:00'),
+	('2021-05-09 09:00:00', '2021-05-09 11:00:00'),
+	('2022-09-04 14:00:00', '2022-09-04 16:00:00'),
+	('2022-10-09 17:00:00', '2022-10-09 18:00:00'
+);
+
+--наполнение STUDENT_BOARD:
+INSERT INTO STUDENT_BOARD (SB_CALENDAR_ID, SB_STUDENT_ID, SB_POSITION_ID) VALUES
+	(1, 1, 1),
+	(2, 2, 2),
+	(3, 3, 3),
+	(4, 4, 4),
+	(5, 5, 5),
+	(6, 6, 6),
+	(7, 7, 7),
+	(8, 8, 8),
+	(9, 9, 9),
+	(10, 10, 10),
+	(11, 11, 11),
+	(1, 12, 12),
+	(2, 13, 13),
+	(3, 14, 14),
+	(4, 15, 15),
+	(5, 16, 16),
+	(6, 17, 17),
+	(7, 18, 18),
+	(8, 19, 19),
+	(9, 20, 20
+);
+
+--наполнение EVENT_TYPE:
+INSERT INTO EVENT_TYPE (ET_NAME, ET_LOCATION, ET_CALENDAR_ID) VALUES
+	('День Знаний (1 сентября)', 'МУИВ', 1),
+	('Посвящение в Студенты', 'МУИВ', 2),
+	('Кубок ректора по настольному теннису', 'МУИВ', 3),
+	('Новый год в МУИВ', 'МУИВ', 4),
+	('День влюбленных', 'МУИВ', 5),
+	('День защитника отечества', 'МУИВ', 6),
+	('Международный женский день', 'МУИВ', 7),
+	('Конкурс МИСС и МИСТЕР МУИВ', 'МУИВ', 8),
+	('Фестиваль талантов', 'МУИВ', 9),
+	('Встреча выпускников', 'МУИВ', 10),
+	('Выпускной и вручение дипломов', 'МУИВ', 11
+);
+
+--наполнение DIVISION_LIST:
+INSERT INTO DIVISION_LIST (DL_NAME, DL_PARENT_DIVISION_ID) VALUES
+	('Юридический факультет', NULL),
+	('Факультет информационных технологий', NULL),
+	('Факультет экономики и финансов', NULL),
+	('Факультет управления', NULL),
+	('Кафедра уголовного права и процесса', 1),
+	('Кафедра публичного права', 1),
+	('Кафедра гражданского права и процесса', 1),
+	('Кафедра математических и естесственно-научных дис', 2),
+	('Кафедра информационных систем', 2),
+	('Кафедра исследования на базе сервиса Гитфлик', 2),
+	('Кафедра финансового учета', 3),
+	('Кафедра экономики ГХиСО', 3),
+	('Кафедра финансово-экономической экспертизы', 3),
+	('Кафедра менеджмента', 4),
+	('Кафедра управления бизнесом и консалтинг', 4),
+	('Кафедра рекламы и человеческих ресурсов', 4),
+	('Кафедра психологии и педагогики', 4),
+	('Кафедра социально-гуманитарных дисциплин', 4),
+	('Кафедра 31ая школа г.Химки ', 4),
+	('Кафедра инноваций в развитии капитала', 4
+);
+
+--наполнение таблицы STAFF_LIST:
+INSERT INTO STAFF_LIST (SL_SURNAME, SL_FIRSTNAME, SL_LASTNAME, SL_DIVISION_ID, SL_IS_WORKS) VALUES
+	('СИНИЦЫН', 'АЛЕКСАНДР', 'МИХАЙЛОВИЧ', '1', true),
+	('АЛЕКСАНДРОВ', 'ЕВГЕНИЙ', 'БОРИСОВИЧ', '2', true),
+	('ИВАНОВА', 'МАРИЯ', 'АЛЕКСАНДРОВНА', '3', true),
+	('ПЕТРОВА', 'ТАТЬЯНА', 'СЕРГЕЕВНА', '4', true),
+	('СИДОРОВ', 'ОЛЕГ', 'ВЯЧЕСЛАВОВИЧ', '5', true),
+	('БОРИСОВ', 'ЛЕОНИД', 'ЛЕОНИДОВИЧ', '6', true),
+	('СИНИЦЫН', 'АЛЕКСАНДР', 'МИХАЙЛОВИЧ', '7', true
+);
+
+--наполнение таблицы EVENT_LIST:
+INSERT INTO EVENT_LIST (EL_C_START_DATE, EL_C_END_DATE, EL_GROUP_ID, EL_STUDENT_ID, EL_STAFF_ID) VALUES
+	('2019-09-10 15:00:00', '2019-09-10 18:00:00', 1, 1, 1),
+	('2019-10-10 15:00:00', '2019-10-10 18:00:00', 2, 2, 2),
+	('2020-11-16 12:00:00', '2020-11-16 14:00:00', 3, 3, 3),
+	('2020-12-29 16:00:00', '2020-12-29 18:00:00', 4, 4, 4),
+	('2021-09-03 17:00:00', '2021-09-03 19:00:00', 5, 5, 5),
+	('2021-10-04 14:00:00', '2021-10-04 16:00:00', 6, 6, 6),
+	('2021-11-11 17:00:00', '2021-11-11 18:00:00', 1, 7, 7),
+	('2021-04-12 16:00:00', '2021-04-12 18:00:00', 2, 8, 1),
+	('2021-05-09 09:00:00', '2021-05-09 11:00:00', 3, 9, 2),
+	('2022-09-04 14:00:00', '2022-09-04 16:00:00', 4, 10, 3),
+	('2022-10-09 17:00:00', '2022-10-09 18:00:00', 5, 11, 4
+);
+
+-------создание функции для фронта------------------------------------------------------------------------------------------------------------------------------------------------
+
+	create or replace function proc_event_list (in_date date)
+		returns TABLE(
+		ID INT,
+		C_START_DATE TIMESTAMP,
+		C_END_DATE TIMESTAMP,
+		GROUP_ID INT,
+		STUDENT_ID INT,
+		STAFF_ID INT
+		)
+		LANGUAGE plpgsql as
+		$func$
+		BEGIN
+		RETURN QUERY
+		SELECT *
+		FROM event_list
+		WHERE CAST(in_date as date) between CAST(EL_C_START_DATE as date) and CAST(EL_C_END_DATE as date);
+		END;
+		$func$
+		;
+
+-------создание индексов------------------------------------------------------------------------------------------------------------------------------------------------------------
+--Создание индекса в таблице STUDENT для поля S_ID
+CREATE INDEX S_ID_INDEX ON STUDENT (S_ID);
+
+--Создание индекса в таблице STAFF_LIST для поля SL_ID
+CREATE INDEX SL_ID_INDEX ON STAFF_LIST (SL_ID);
+
+--Создание индекса в таблице CALENDAR для поля C_ID
+CREATE INDEX C_ID_INDEX ON CALENDAR (C_ID);
+
+--Создание индекса в таблице EVENT_LIST для поля EL_ID
+CREATE INDEX EL_ID_INDEX ON EVENT_LIST (EL_ID);
