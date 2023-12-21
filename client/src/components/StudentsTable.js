@@ -7,7 +7,7 @@ export default function StudentsTable() {
     const columns = ["S_ID", "S_FIRSTNAME", "S_SURNAME", "S_LASTNAME", "S_GROUP_ID", "S_STUDY_ID"];
     useEffect(() =>
         {
-            axios.get('https://animated-space-zebra-x55w46qpgvjq39v6r-5000.app.github.dev/api/student')
+            axios.get('/api/student')
             .then(res => {
                 setData(res.data.students)
             })
