@@ -2,15 +2,15 @@ from .db import db
 
 
 class Calendar(db.Model):
-    __tablename__ = "CALENDAR"
+    __tablename__ = "calendar"
 
-    C_ID = db.Column(db.Integer, primary_key=True)
-    C_START_DATE = db.Column(db.Date, nullable=False)
-    C_END_DATE = db.Column(db.Date, nullable=False)
+    c_id = db.Column(db.Integer, primary_key=True)
+    c_start_date = db.Column(db.Date, nullable=False)
+    c_end_date = db.Column(db.Date, nullable=False)
 
     def json(self):
         return {
-            "C_ID": self.C_ID,
-            "C_START_DATE": self.C_START_DATE,
-            "C_END_DATE": self.C_END_DATE
+            "c_id": self.c_id,
+            "c_start_date": self.c_start_date.__str__(),
+            "c_end_date": self.c_end_date.__str__()
         }

@@ -2,17 +2,17 @@ from .db import db
 
 
 class DivisionList(db.Model):
-    __tablename__ = "DIVISION_LIST"
+    __tablename__ = "division_list"
 
-    DL_ID = db.Column(db.Integer, primary_key=True)
-    DL_NAME = db.Column(db.String(50), nullable=False)
-    DL_PARENT_DIVISION_ID = db.Column(db.Integer)
+    dl_id = db.Column(db.Integer, primary_key=True)
+    dl_name = db.Column(db.String(50), nullable=False)
+    dl_parent_division_id = db.Column(db.Integer)
 
     def json(self):
         return {
-            "DL_ID": self.DL_ID,
-            "DL_NAME": self.DL_NAME,
-            "DL_PARENT_DIVISION_ID": self.DL_PARENT_DIVISION_ID
+            "dl_id": self.dl_id,
+            "dl_name": self.dl_name,
+            "dl_parent_division_id": self.dl_parent_division_id
         }
 
     @classmethod

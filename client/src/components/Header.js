@@ -19,7 +19,7 @@ export default function Header() {
         <LinkButton url="/groups">Группы</LinkButton>
         <LinkButton url="/students">Студенты</LinkButton>
         <LinkButton url="/student-council">Студенческий совет</LinkButton>
-        <LinkButton url="/teachers">Преподаватели</LinkButton>
+        <LinkButton url="/staff">Преподаватели</LinkButton>
         <LinkButton url="/events-list">Список мероприятий</LinkButton>
         <LinkButton url="/events-log">Журнал мероприятий</LinkButton>
         <LinkButton url="/report">Отчет</LinkButton>

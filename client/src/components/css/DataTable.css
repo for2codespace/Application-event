@@ -1,0 +1,7 @@
+.table {
+    position: relative;
+    width: 90%;
+    left: 5%;
+    margin: none;
+    box-sizing: border-box;
+}

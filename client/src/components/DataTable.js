@@ -4,12 +4,13 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+import './css/DataTable.css';
+import styled from '@emotion/styled';
 
 export default function DataTable({ dataHeaders, data }) {
     return (
-        <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <div className='table'>
+            <Table sx={{ minWidth: 650, maxWidth: '90vw' }} aria-label="simple table">
                 <TableHead>
                     <TableRow>
                         {dataHeaders.map(
@@ -32,6 +33,11 @@ export default function DataTable({ dataHeaders, data }) {
                     ))}
                 </TableBody>
             </Table>
-        </TableContainer>
+        </div>
     );
 }
+
+const TableWrapper = styled('div') ({
+    width: '100vw'
+})
+export {TableWrapper};
