@@ -13,7 +13,6 @@ import ReportTable from './components/ReportTable';
 import Redirect from './components/Redirect';
 
 
-
 export default function App() {
   axios.defaults.baseURL = 'https://application-event.onrender.com/api/';
   axios.defaults.headers.post['Content-Type'] = 'application/json';
