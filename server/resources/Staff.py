@@ -2,8 +2,8 @@ from flask_restful import Resource
 from models import StaffList as StaffListTable
 
 
-class Teachers(Resource):
-    path = "/teachers"
+class Staff(Resource):
+    path = "/staff_list"
 
     @classmethod
     def get(cls):

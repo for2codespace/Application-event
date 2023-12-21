@@ -18,10 +18,10 @@ export default function EventsListTable() {
         const date1AsDate = dayjs(date1);
         const date2AsDate = dayjs(date2);
     
-        const formattedDate1 = date1AsDate.format('YYYY-DD-MM');
-        const formattedDate2 = date2AsDate.format('YYYY-DD-MM');
+        const formattedDate1 = date1AsDate.format('YYYY-MM-DD');
+        const formattedDate2 = date2AsDate.format('YYYY-MM-DD');
 
-        axios.get(`/event_type?date_from=${formattedDate1}&date_to=${formattedDate2}`)
+        axios.get(`/event_list?date_from=${formattedDate1}&date_to=${formattedDate2}`)
         .then(res => {
             setData(res.data.event_types)
         })
