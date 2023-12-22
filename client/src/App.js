@@ -14,7 +14,7 @@ import Redirect from './components/Redirect';
 
 
 export default function App() {
-  axios.defaults.baseURL = 'https://application-event.onrender.com/api/';
+  axios.defaults.baseURL = 'https://application-event.onrender.com/api/';  // backend on render.com
   axios.defaults.headers.post['Content-Type'] = 'application/json';
 
   return (
