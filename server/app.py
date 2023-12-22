@@ -3,7 +3,6 @@ from dotenv import load_dotenv
 
 from flask import Flask
 from flask_cors import CORS
-from waitress import serve
 
 from models import db
 from resources import api
@@ -25,8 +24,6 @@ api.init_app(app)
 with app.app_context():
     db.create_all()
 
-
-if __name__ == '__main__':
-    serve(app, host='0.0.0.0', port=403)
-    # run `waitress-serve --port=403 app:app` in console or
-    # run this file: `python app.py`
+# for deployment in localhost:5000 uncommented next 2 rows:
+# if __name__ == '__main__':
+#    app.run(host='0.0.0.0', port=5000)
