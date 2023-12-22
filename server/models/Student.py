@@ -13,12 +13,12 @@ class Student(db.Model):
 
     def json(self):
         return {
-            "S_ID": self.s_id,
-            "S_FIRSTNAME": self.s_firstname,
-            "S_SURNAME": self.s_surname,
-            "S_LASTNAME": self.s_lastname,
-            "S_GROUP_ID": self.s_group_id,
-            "S_STUDY_ID": self.s_study_type_id
+            "s_id": self.s_id,
+            "s_firstname": self.s_firstname,
+            "s_surname": self.s_surname,
+            "s_lastname": self.s_lastname,
+            "s_group_id": self.s_group_id,
+            "s_study_type_id": self.s_study_type_id
         }
     
     @classmethod
