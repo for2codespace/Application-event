@@ -8,18 +8,18 @@ info:
     url: https://github.com/exp-of-betrayal/Application-event
   license:
     name: MIT License
-    url: https://github.com/exp-of-betrayal/Application-event/blob/main/LICENSE
+    url: "https://github.com/exp-of-betrayal/Application-event/blob/main/LICENSE"
   version: 0.1.0
 servers:
   - url: "https://application-event.onrender.com/api/"
 tags:
   - name: get requests
-    description: getting information from table
+    description: getting information from tables
 paths:
   /event_list:
     get:
       tags:
-        - pet
+        - get requests
       summary: get list of events
       responses:
         '200':
@@ -38,7 +38,7 @@ paths:
   /event_type:
     get:
       tags:
-        - pet
+        - get requests
       summary: get list of event types
       responses:
         '200':
@@ -57,7 +57,7 @@ paths:
   /groupes:
     get:
       tags:
-        - pet
+        - get requests
       summary: get list of groupes
       responses:
         '200':
@@ -76,7 +76,7 @@ paths:
   /staff_list:
     get:
       tags:
-        - pet
+        - get requests
       summary: get list of staff
       responses:
         '200':
@@ -92,7 +92,45 @@ paths:
                       $ref: '#/components/schemas/Staff'
         '404':
           description: No staff found
-            
+  /student:
+    get:
+      tags:
+        - get requests
+      summary: get list of student
+      responses:
+        '200':
+          description: Successfull get data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  students:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Student'
+        '404':
+          description: No students found
+  /student_board:
+    get:
+      tags:
+        - get requests
+      summary: get list of student
+      responses:
+        '200':
+          description: Successfull get data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  board:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/StudentBoard'
+        '404':
+          description: No student board
+
 components:
   schemas:
     EventList:
@@ -186,3 +224,46 @@ components:
           enum:
             - "работает"
             - "не работает"
+    Student:
+      type: object
+      properties:
+        s_id:
+          type: integer
+          format: int64
+          example: 1
+        s_firstname:
+          type: string
+          example: "Елена"
+        s_surname:
+          type: string
+          example: "Владимировна"
+        s_lastname:
+          type: string
+          example: "Акиньшина"
+        s_group_id:
+          type: integer
+          format: int64
+          example: 1
+        s_study_id:
+          type: integer
+          format: int64
+          example: 1
+    StudentBoard:
+      type: object
+      properties:
+        sb_board_id:
+          type: integer
+          format: int64
+          example: 1
+        sb_calendar_id:
+          type: integer
+          format: int64
+          example: 1
+        sb_student_id:
+          type: integer
+          format: int64
+          example: 1
+        sb_position_id:
+          type: integer
+          format: int64
+          example: 1
