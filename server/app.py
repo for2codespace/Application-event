@@ -1,15 +1,17 @@
 import os
+from dotenv import load_dotenv
 
 from flask import Flask
 from flask_cors import CORS
-from dotenv import load_dotenv
+from waitress import serve
 
 from models import db
 from resources import api
 from sqlalchemy import text
 
+
 load_dotenv()
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
 CORS(app)
 
 
@@ -22,11 +24,9 @@ api.init_app(app)
 
 with app.app_context():
     db.create_all()
-    print(*db.session.execute(text("""
-        SELECT table_name 
-        FROM information_schema.tables;
-    """)).fetchall(), sep="\n")
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    serve(app, host='0.0.0.0', port=403)
+    # run `waitress-serve --port=403 app:app` in console or
+    # run this file: `python app.py`
