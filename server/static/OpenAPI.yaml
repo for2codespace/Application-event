@@ -54,11 +54,11 @@ paths:
                       $ref: '#/components/schemas/EventType'
         '404':
           description: No events found
-  /groupes:
+  /groups:
     get:
       tags:
         - get requests
-      summary: get list of groupes
+      summary: get list of groups
       responses:
         '200':
           description: Successful get data
@@ -70,7 +70,7 @@ paths:
                   groupes:
                     type: array
                     items:
-                      $ref: '#/components/schemas/Groupes'
+                      $ref: '#/components/schemas/Groups'
         '404':
           description: No groupes found
   /staff_list:
