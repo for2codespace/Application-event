@@ -4,12 +4,12 @@ import { useState, useEffect } from "react";
 
 export default function StudentsTable() {
     const [data, setData] = useState([])
-    const columns = ["GL_ID", "GL_NAME", "GL_NUMBER", "GL_YEAR"];
+    const columns = ["GL_ID", "GL_NAME", "GL_YEAR"];
     useEffect(() =>
         {
-            axios.get('/groupes')
+            axios.get('/groups')
             .then(res => {
-                setData(res.data.groupes)
+                setData(res.data.groups)
             })
             .catch(err => {
                 setData(null)
