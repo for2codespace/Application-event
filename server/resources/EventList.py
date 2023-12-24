@@ -18,10 +18,12 @@ class EventList(Resource):
     @classmethod
     def get(cls):
         try:
-            string_date = req.args.get('date')
+            string_date = req.args['date']
+            if not string_date:
+                raise ValueError
             date = parse_string_date(string_date)
-            events = EventListTable.get_by_range(date)            
-        except ValueError or AttributeError as e:
+            events = EventListTable.get_by_range(date)
+        except Exception as e:
             events = EventListTable.get_all()
 
         if events:
