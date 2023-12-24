@@ -2,7 +2,7 @@ from flask_restful import Resource
 from models import GroupList as GroupListTable
 
 
-class Groupes(Resource):
+class Groups(Resource):
     path = "/groups"
 
     @classmethod
