@@ -33,9 +33,9 @@ class EventList(Resource):
 
     @classmethod
     def post(cls):
-        json_body = request.json
+        json_body = req.json
         REQUIRED_ARGS = [
-            "id", "calendar_id", "event_type_id", "c_start_date", "c_end_date", "group_id", "student_id", "staff_id"
+            "calendar_id", "event_type_id", "c_start_date", "c_end_date", "group_id", "student_id", "staff_id"
         ]
         for arg in REQUIRED_ARGS:
             if arg not in json_body:
@@ -43,6 +43,7 @@ class EventList(Resource):
         
         prefix = "el_"
         filtered_json_body = { prefix+key: json_body[key] for key in REQUIRED_ARGS }
-        event = EventListTable(**json_body)
+        event = EventListTable(**filtered_json_body)
         event.save()
+
         return {"message": "Event created"}, 201

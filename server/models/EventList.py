@@ -26,6 +26,11 @@ class EventList(db.Model):
             "el_staff_id": self.el_staff_id
         }
     
+    def save(self):
+        if not self.el_id:
+            db.session.add(self)
+        db.session.commit()
+    
     @classmethod
     def get_all(cls):
         return cls.query.all()
