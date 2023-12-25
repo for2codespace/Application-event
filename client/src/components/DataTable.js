@@ -6,8 +6,7 @@ import TableRow from '@mui/material/TableRow';
 import './css/DataTable.css';
 import styled from '@emotion/styled';
 
-export default function DataTable({ data }) {
-    const dataHeaders = Object.keys(data[0]);
+export default function DataTable({ dataHeaders, data }) {
     return (
         <div className='table'>
             <Table sx={{ minWidth: 650, maxWidth: '90vw' }} aria-label="simple table">
@@ -26,6 +25,8 @@ export default function DataTable({ data }) {
                         >
                             { Object.keys(row).map((key, index) => 
                                 <TableCell key={index}>{row[key]}</TableCell>)
+                            }
+                            { Object.keys(row).map((key, index) => console.log(row[key]))
                             }
                         </TableRow>
                     ))}

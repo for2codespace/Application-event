@@ -5,17 +5,15 @@ info:
     This is a Application event server.
   contact:
     name: Github repository
-    url: https://github.com/sergeybabykin/Application-event
+    url: https://github.com/exp-of-betrayal/Application-event
   license:
     name: MIT License
-    url: "https://github.com/sergeybabykin/Application-event/blob/main/LICENSE"
+    url: "https://github.com/exp-of-betrayal/Application-event/blob/main/LICENSE"
   version: 0.1.0
 servers:
   - url: "https://application-event.onrender.com/api/"
 tags:
   - name: get requests
-    description: getting information from tables
-  - name: create data requests
     description: getting information from tables
 paths:
   /event_list:
@@ -37,54 +35,6 @@ paths:
                       $ref: '#/components/schemas/EventList'
         '404':
           description: No events found
-    post:
-      tags:
-        - create data requests
-      summary: create new event
-      requestBody:
-        description: Create a new pet in the store
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                id:
-                  type: integer
-                  format: int64
-                calendar_id:
-                  type: integer
-                  format: int64
-                event_type_id:
-                  type: integer
-                  format: int64
-                c_start_date:
-                  type: string
-                  format: date
-                c_end_date:
-                  type: string
-                  format: date
-                group_id:
-                  type: integer
-                  format: int64
-                student_id:
-                  type: integer
-                  format: int64
-                staff_id:
-                  type: integer
-                  format: int64
-      responses:
-        '201':
-          description: Event created
-        '400':
-          description: "Missing arguments"
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    example: "Missing argument: {arg}"
   /event_type:
     get:
       tags:
