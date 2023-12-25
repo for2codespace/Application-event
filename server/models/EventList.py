@@ -1,4 +1,5 @@
 from .db import db
+from datetime import date
 
 
 class EventList(db.Model):
@@ -25,16 +26,21 @@ class EventList(db.Model):
             "el_staff_id": self.el_staff_id
         }
     
+    def save(self):
+        if not self.el_id:
+            db.session.add(self)
+        db.session.commit()
+    
     @classmethod
     def get_all(cls):
         return cls.query.all()
 
     @classmethod
-    def get_by_range(cls, date_from, date_to):
-        if not date_from or not date_to:
-            return cls.get_all()
-        else:
-            return cls.query.filter(
-                cls.el_c_start_date.between(date_from, date_to) &
-                cls.el_c_end_date.between(date_from, date_to)
-            ).all()
+    def get_by_range(cls, date_from: date):
+        if not date_from:
+            raise ValueError('date_from is required')
+        today = date.today()
+        return cls.query.filter(
+            cls.el_c_start_date.between(date_from, today) &
+            cls.el_c_end_date.between(date_from, today)
+        ).all()
