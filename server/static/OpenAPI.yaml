@@ -5,10 +5,10 @@ info:
     This is a Application event server.
   contact:
     name: Github repository
-    url: https://github.com/exp-of-betrayal/Application-event
+    url: https://github.com/sergeybabykin/Application-event
   license:
     name: MIT License
-    url: "https://github.com/exp-of-betrayal/Application-event/blob/main/LICENSE"
+    url: "https://github.com/sergeybabykin/Application-event/blob/main/LICENSE"
   version: 0.1.0
 servers:
   - url: "https://application-event.onrender.com/api/"
