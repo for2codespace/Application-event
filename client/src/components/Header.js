@@ -12,7 +12,10 @@ export default function Header() {
       </div>
       <div className="Header">
         <div className="Logo"></div>
-        <div className="Title">Отдел воспитательной работы</div>
+        <div className="Title">
+          Факультет информационных технологий<br />
+          <span className="Subtitle">Отчет по воспитательной работе</span>
+        </div>
       </div>
       <div className="Divider"></div>
       <div className="Button-Container">

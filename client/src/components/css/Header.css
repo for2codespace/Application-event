@@ -58,6 +58,10 @@
     font-weight: 500;
     font-size: 30px;
     color: #990033;
+    text-align: center;
+}
+.Subtitle {
+    font-size: 25px;
 }
 .Divider {
     position: absolute;
