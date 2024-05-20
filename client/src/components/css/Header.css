@@ -48,7 +48,7 @@
     width: 220px;
     height: 80px;
     margin-left: 1em;
-    background: url("./logo.jpg") no-repeat;
+    background: url("./logo.svg") no-repeat;
     background-size: contain;
 }
 .Title {
