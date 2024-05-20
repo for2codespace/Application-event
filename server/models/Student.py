@@ -9,7 +9,7 @@ class Student(db.Model):
     s_surname = db.Column(db.String(50), nullable=False)
     s_lastname = db.Column(db.String(50), nullable=False)
     s_group_id = db.Column(db.Integer, nullable=False)
-    s_study_type_id = db.Column(db.Integer, nullable=False)
+    s_study_type_id = db.Column(db.ForeignKey('study_type.st_id'), nullable=False)
 
     def json(self):
         return {
@@ -18,9 +18,6 @@ class Student(db.Model):
             "s_surname": self.s_surname,
             "s_lastname": self.s_lastname,
             "s_group_id": self.s_group_id,
+            "s_study_type": self.s_study_type.value
             "s_study_type_id": self.s_study_type_id
         }
-    
-    @classmethod
-    def get_all(cls):
-        return cls.query.all()

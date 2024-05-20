@@ -20,7 +20,3 @@ class StaffList(db.Model):
             "sl_division_id": self.sl_division_id,
             "sl_is_works": "работает" if self.sl_is_works else "не работает"
         }
-
-    @classmethod
-    def get_all(cls):
-        return cls.query.all()

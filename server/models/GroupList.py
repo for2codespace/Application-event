@@ -1,4 +1,5 @@
 from .db import db
+from datetime import date
 
 
 class GroupList(db.Model):
@@ -6,15 +7,19 @@ class GroupList(db.Model):
 
     gl_id = db.Column(db.Integer, primary_key=True)
     gl_name = db.Column(db.Integer, nullable=False)
-    gl_year = db.Column(db.Date, nullable=False)
+    _year = db.Column(db.Date, nullable=False)
 
     def json(self):
         return {
             "gl_id": self.gl_id,
             "gl_name": self.gl_name,
-            "gl_year": self.gl_year.__str__()
+            "gl_year": self.gl_year
         }
-    
-    @classmethod
-    def get_all(cls):
-        return cls.query.all()
+
+    @property
+    def gl_year(self) -> str:
+        return self._year.strftime("%Y")
+
+    @gl_year.setter
+    def gl_year(self, date: date) -> None:
+        self._year = date

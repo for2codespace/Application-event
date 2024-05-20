@@ -14,7 +14,3 @@ class Involvement(db.Model):
             "i_event_id": self.i_event_id,
             "i_student_id": self.i_student_id
         }
-
-    @classmethod
-    def get_all(cls):
-        return cls.query.all()
