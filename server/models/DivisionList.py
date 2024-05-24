@@ -1,7 +1,7 @@
-from .db import db
+from .db import db, BaseModel
 
 
-class DivisionList(db.Model):
+class DivisionList(BaseModel):
     __tablename__ = "division_list"
 
     dl_id = db.Column(db.Integer, primary_key=True)

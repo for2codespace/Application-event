@@ -1,8 +1,9 @@
-from .db import db
+from .db import db, BaseModel
 
 
-class EducationalActivitiesType(db.Model):
+class EducationalActivitiesType(BaseModel):
     __tablename__ = "educational_activities_type"
+
     eat_id = db.Column(db.Integer, primary_key=True)
     eat_name = db.Column(db.String(1000), nullable=False)
 

@@ -1,7 +1,7 @@
 .Header {
     position: relative;
     width: 100vw;
-    height: 170px;
+    height: 100px;
     display: flex;
     align-items: center;
 }
@@ -43,12 +43,23 @@
     background: url('./icons/whatsapp.png') no-repeat;
     background-size: 100% 100%;
 }
+.lc {
+    position: absolute;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+}
+.lc button {
+    font-size: 10px;
+    padding: 3px 5px;
+}
 .Logo {
     position: relative;
     width: 220px;
     height: 80px;
     margin-left: 1em;
-    background: url("./logo.svg") no-repeat;
+    background: url('./logo.svg') no-repeat;
     background-size: contain;
 }
 .Title {

@@ -1,8 +1,9 @@
-from .db import db
+from .db import db, BaseModel
 
 
-class EventKind(db.Model):
+class EventKind(BaseModel):
     __tablename__ = "event_kind"
+
     ek_id = db.Column(db.Integer, primary_key=True)
     ek_name = db.Column(db.String(1000), nullable=False)
 

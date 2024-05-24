@@ -1,7 +1,7 @@
-from .db import db
+from .db import db, BaseModel
 
 
-class EventType(db.Model):
+class EventType(BaseModel):
     __tablename__ = "event_type"
 
     et_id = db.Column(db.Integer, primary_key=True)
@@ -18,7 +18,3 @@ class EventType(db.Model):
             "et_calendar_id": self.et_calendar_id,
             "et_ek_id": self.et_ek_id
         }
-    
-    @classmethod
-    def get_all(cls):
-        return cls.query.all()

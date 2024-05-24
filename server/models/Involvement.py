@@ -1,11 +1,11 @@
-from .db import db
+from .db import db, BaseModel
 
 
-class Involvement(db.Model):
+class Involvement(BaseModel):
     __tablename__ = "involvement"
 
     i_id = db.Column(db.Integer, primary_key=True)
-    i_event_id = db.Column(db.Integer, nullable=False)
+    i_event_id = db.Column(db.Integer, db.ForeignKey('event_list.el_id'), nullable=False)
     i_student_id = db.Column(db.Integer, db.ForeignKey('student.s_id'), nullable=False)
 
     def json(self):

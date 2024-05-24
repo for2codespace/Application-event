@@ -1,7 +1,7 @@
-from .db import db
+from .db import db, BaseModel
 
 
-class StudyType(db.Model):
+class StudyType(BaseModel):
     __tablename__ = "study_type"
 
     st_id = db.Column(db.Integer, primary_key=True)
@@ -12,7 +12,3 @@ class StudyType(db.Model):
             "st_id": self.st_id,
             "st_type": self.st_type
         }
-
-    @classmethod
-    def get_all(cls):
-        return cls.query.all()

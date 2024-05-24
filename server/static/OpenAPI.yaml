@@ -12,6 +12,7 @@ info:
   version: 0.1.0
 servers:
   - url: "https://application-event.onrender.com/api/"
+  - url: "/api/"
 tags:
   - name: get requests
     description: getting information from tables
@@ -21,6 +22,21 @@ paths:
       tags:
         - get requests
       summary: get list of events
+      parameters:
+        - in: query
+          name: date_from
+          schema:
+            type: date
+          example: 2022-01-01
+          description: date range begin (yyyy-mm-dd)
+          required: false
+        - in: query
+          name: date_to
+          schema:
+            type: date
+          example: 2022-01-02
+          description: date range end (yyyy-mm-dd)
+          required: false
       responses:
         '200':
           description: Successful get data

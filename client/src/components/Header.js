@@ -1,7 +1,22 @@
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { context } from "../App";
+import { useContext } from "react";
 import "./css/Header.css";
 
-export default function Header() {
+export default function Header({ user }) {
+  const { set_auth } = useContext(context);
+  const navigate = useNavigate();
+
+  const logout = () => {
+    axios.post("/logout").then((response) => {
+      toast.success("Вы вышли из аккаунта");
+      set_auth(false);
+      navigate("/auth");
+    });
+  }
+
   return (
     <>
       <div className="links-container">
@@ -16,15 +31,19 @@ export default function Header() {
           Факультет информационных технологий<br />
           <span className="Subtitle">Отчет по воспитательной работе</span>
         </div>
+        <div className="lc">
+          {user.name} {user.lastname}, 
+          <button className="btn btn-primary" onClick={logout}>Выйти</button>
+        </div>
       </div>
       <div className="Divider"></div>
       <div className="Button-Container">
         <LinkButton url="/groups">Группы</LinkButton>
         <LinkButton url="/students">Студенты</LinkButton>
-        <LinkButton url="/student-council">Студенческий совет</LinkButton>
         <LinkButton url="/staff">Преподаватели</LinkButton>
-        <LinkButton url="/events-list">Список мероприятий</LinkButton>
-        <LinkButton url="/events-log">Журнал мероприятий</LinkButton>
+        <LinkButton url="/event-card-list">Карточка мероприятия</LinkButton>
+        <LinkButton url="/events-list">План работ</LinkButton>
+        <LinkButton url="/events-log">Журнал воспитательной работы</LinkButton>
         <LinkButton url="/report">Отчет</LinkButton>
       </div>
     </>

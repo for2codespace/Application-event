@@ -1,0 +1,47 @@
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:15
+    restart: "on-failure"
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  server:
+    container_name: backend
+    build: ./server
+    ports:
+      - "5000:5000"
+    restart: on-failure
+    environment:
+      # - DATABASE_URI=postgresql://postgres:postgres@postgres:5432/postgres
+      - DATABASE_URI=postgresql://aSFSDAF_owner:4nbgQT1pyEKX@ep-spring-glitter-a21dkac7.eu-central-1.aws.neon.tech/aSFSDAF?sslmode=require
+      - JWT_SECRET_KEY=ijcicjh;IHW;OIH:oihaoih
+    volumes:
+      - ./server:/server
+    command: flask run --host=0.0.0.0 --port=5000
+    depends_on:
+      - postgres
+
+  client:
+    container_name: client
+    build: 
+      context: ./client
+      args:
+        # replace to actual. using for set env in building react app
+        REACT_APP_SERVER_URL: https://urban-garbanzo-7v5r596g4px2xvv6-5000.app.github.dev/api 
+    restart: on-failure
+    ports:
+      - "3000:3000"
+    command: serve -s build
+    depends_on:
+      - server
+
+
+volumes:
+  pgdata: {}

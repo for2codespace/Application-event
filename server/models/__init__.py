@@ -2,6 +2,9 @@ from .db import db
 
 from .Calendar import Calendar
 from .DivisionList import DivisionList
+from .EducationalActivitiesType import EducationalActivitiesType
+from .EventCard import EventCard
+from .EventKind import EventKind
 from .EventList import EventList
 from .EventType import EventType
 from .GroupList import GroupList
@@ -10,3 +13,4 @@ from .StaffList import StaffList
 from .Student import Student
 from .StudentBoard import StudentBoard
 from .StudyType import StudyType
+from .Auth import Auth

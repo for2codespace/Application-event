@@ -1,7 +1,7 @@
-from .db import db
+from .db import db, BaseModel
 
 
-class StudentBoard(db.Model):
+class StudentBoard(BaseModel):
     __tablename__ = "student_board"
 
     sb_board_id = db.Column(db.Integer, primary_key=True)
@@ -16,7 +16,3 @@ class StudentBoard(db.Model):
             "sb_student_id": self.sb_student_id,
             "sb_position_id": self.sb_position_id
         }
-
-    @classmethod
-    def get_all(cls):
-        return cls.query.all()
