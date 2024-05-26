@@ -9,12 +9,16 @@ from .StudentBoard import StudentBoard
 from .EventCard import EventCard
 from .DOCS import Docs
 from .Auth import Auth, Logout
+from .EatList import EatList
+from .EventKindList import EventKindList
 
 
 api = Api(prefix="/api")
 
 for resource in [
     Logout,
+    EventKindList,
+    EatList,
     EventList,
     EventCard,
     EventType,

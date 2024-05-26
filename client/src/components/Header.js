@@ -32,8 +32,8 @@ export default function Header({ user }) {
           <span className="Subtitle">Отчет по воспитательной работе</span>
         </div>
         <div className="lc">
-          {user.name} {user.lastname}, 
-          <button className="btn btn-primary" onClick={logout}>Выйти</button>
+          {user.name} {user.lastname}
+          <p className="LinkButton small-btn" onClick={logout}>Выйти</p>
         </div>
       </div>
       <div className="Divider"></div>
@@ -41,8 +41,7 @@ export default function Header({ user }) {
         <LinkButton url="/groups">Группы</LinkButton>
         <LinkButton url="/students">Студенты</LinkButton>
         <LinkButton url="/staff">Преподаватели</LinkButton>
-        <LinkButton url="/event-card-list">Карточка мероприятия</LinkButton>
-        <LinkButton url="/events-list">План работ</LinkButton>
+        <LinkButton url="/event-card-list">План работ</LinkButton>
         <LinkButton url="/events-log">Журнал воспитательной работы</LinkButton>
         <LinkButton url="/report">Отчет</LinkButton>
       </div>

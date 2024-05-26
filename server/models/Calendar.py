@@ -6,8 +6,8 @@ class Calendar(BaseModel):
     __tablename__ = "calendar"
 
     c_id = db.Column(db.Integer, primary_key=True)
-    с_start_date = db.Column(db.Date, nullable=False)
-    с_end_date = db.Column(db.Date, nullable=False)
+    c_start_date = db.Column(db.Date, nullable=False)
+    c_end_date = db.Column(db.Date, nullable=False)
 
     def json(self):
         return {

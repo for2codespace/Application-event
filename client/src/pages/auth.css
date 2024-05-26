@@ -1,8 +1,3 @@
-:root {
-    --primary-color-auth: #c21631;
-    --secondary-color: #ffffff;
-}
-
 .auth {
     position: relative;
     width: 60%;
@@ -28,7 +23,7 @@ input {
     border-radius: 25px;
     padding: 0.5em;
     padding-left: 1em;
-    border: 1.5px solid var(--primary-color-auth);
+    border: 1.5px solid #c21631;
     line-height: 1.2;
     width: 300px;
     font-size: 25px;
@@ -44,23 +39,23 @@ button {
     cursor: pointer;
     border-radius: 25px;
     padding: 0.5em;
-    border: 1.5px solid var(--primary-color-auth);
+    border: 1.5px solid #c21631;
     width: calc(100% - 4em);
-    color: var(--secondary-color);
-    background-color: var(--primary-color-auth);
+    color: #ffffff;
+    background-color: #c21631;
     font-size: 25px;
     margin: 0.5em 2em;
     transition: all 0.1s linear;
 }
 
 button:hover {
-    background-color: var(--secondary-color);
-    color: var(--primary-color-auth);
+    background-color: #ffffff;
+    color: #c21631;
 }
 
 button:active {
-    background-color: var(--secondary-color);
-    color: var(--primary-color-auth);
+    background-color: #ffffff;
+    color: #c21631;
     filter: brightness(0.9);
 }
 

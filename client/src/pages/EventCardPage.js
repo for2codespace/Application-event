@@ -37,20 +37,8 @@ export default function EventCardsListPage() {
             <p>type: {card.ec_eat_id.eat_name}</p>
             <p>kind: {card.ec_ek_id.ek_name}  </p>
             <hr />
-            <h4>Comments:</h4>
-            <Comments comments={card.ec_comments} />
+            <h5>Comments:</h5>
+            <p>{card.ec_comments}</p>
         </div>
-    )
-}
-
-function Comments({ comments }) {
-    var comments_data = null;
-    try {
-        comments_data = JSON.parse(comments);
-    } catch (error) {
-        return <p> No comments </p>  
-    }
-    return comments_data.map(
-        comment => <p>[{comment.date}] {comment.author}: {comment.comment_text}<br /></p>
     )
 }

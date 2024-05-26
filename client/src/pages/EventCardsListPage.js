@@ -22,13 +22,16 @@ export default function EventCardsListPage() {
     }, [navigate]);
 
     return (
-        <div className="cards-container">
-            <div className="cards-wrapper">
-                {
-                    data.map(card => <Card key={card.ec_id} card={card} />)
-                }    
+        <>
+            <div className="cards-container">
+                <div className="cards-wrapper">
+                    {
+                        data.map(card => <Card key={card.ec_id} card={card} />)
+                    }    
+                </div>
             </div>
-        </div>
+            <div className="add-btn" onClick={() => navigate("/event-card-new")} />
+        </>
     )
 }
 

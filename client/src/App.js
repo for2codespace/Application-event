@@ -19,16 +19,22 @@ import EventsListTable from './components/EventsListTable';
 import EventsLogTable from './components/EventsLogTable';
 import ReportTable from './components/ReportTable';
 import Redirect from './components/Redirect';
+import EventCardForm from './components/EventCardForm';
 
 
 const context = createContext();
 
 export default function App() {
   const [auth, setAuth] = useState(localStorage.getItem('auth') === 'true');
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({
+    name: localStorage.getItem('firstname'),
+    lastname: localStorage.getItem('lastname'),
+  });
   const set_auth = (value, firstname=null, lastname=null) => {
     setAuth(value);
     localStorage.setItem('auth', value);
+    localStorage.setItem('firstname', firstname);
+    localStorage.setItem('lastname', lastname);
 
     if (value === true) {
       setUser({ name: firstname, lastname: lastname });
@@ -64,6 +70,7 @@ export default function App() {
                 <Route path="/students" element={<StudentsTable />} />
                 <Route path="/event-card-list" element={<EventCardsListPage />} />
                 <Route path="/event-card/:id" element={<EventCardPage />} />
+                <Route path="/event-card-new" element={<EventCardForm />} />
                 <Route path="/staff" element={<StaffTable />} />
                 <Route path="/events-list" element={<EventsListTable />} />
                 <Route path="/events-log" element={<EventsLogTable />} />
