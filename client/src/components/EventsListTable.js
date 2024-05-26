@@ -1,20 +1,23 @@
 import axios from "axios";
 import DataTable from "./DataTable";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function EventsListTable() {
     const [data, setData] = useState([])
-    const columns = ["EL_ID", "EL_NAME", "EL_START_DATE", "EL_END_DATE", "EL_GROUP_ID", "EL_STUDENT_ID", "EL_STAFF_ID"];
+    const columns = ["№", "Событие", "дата начала", "дата окончания", "группа", "студент", "преподаватель"];
+    const navigate = useNavigate();
+    
     useEffect(() =>
         {
             axios.get('/event_list')
             .then(res => {
-                setData(res.data.events)
+                setData(res.data.events);
             })
             .catch(err => {
-                setData(null)
+                setData(null);
             })
-        }, [])
+        }, [navigate])
     return (
         <div>
             { 

@@ -1,10 +1,12 @@
 import axios from "axios";
 import DataTable from "./DataTable";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function StudentsTable() {
     const [data, setData] = useState([])
-    const columns = ["GL_ID", "GL_NAME", "GL_YEAR"];
+    const columns = ["№", "Название", "Год"];
+    const navigate = useNavigate();
     useEffect(() =>
         {
             axios.get('/groups')
@@ -14,7 +16,7 @@ export default function StudentsTable() {
             .catch(err => {
                 setData(null)
             })
-        }, [])
+        }, [navigate])
     return (
         <div>
             { 

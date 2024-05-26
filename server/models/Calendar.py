@@ -1,7 +1,8 @@
-from .db import db
+from datetime import date
+from .db import db, BaseModel
 
 
-class Calendar(db.Model):
+class Calendar(BaseModel):
     __tablename__ = "calendar"
 
     c_id = db.Column(db.Integer, primary_key=True)
@@ -11,6 +12,6 @@ class Calendar(db.Model):
     def json(self):
         return {
             "c_id": self.c_id,
-            "c_start_date": self.c_start_date.__str__(),
-            "c_end_date": self.c_end_date.__str__()
+            "c_start_date": self.c_start_date.strftime("%Y-%m-%d"),
+            "c_end_date": self.c_end_date.strftime("%Y-%m-%d")
         }

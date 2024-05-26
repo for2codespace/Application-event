@@ -1,27 +1,29 @@
 import axios from "axios";
 import DataTable, { TableWrapper } from "./DataTable";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function StaffTable() {
-    const [data, setData] = useState([])
-    const columns = ["SL_ID", "SL_FIRSTNAME", "SL_SURNAME", "SL_LASTNAME", "SL_DIVISION_ID", "SL_IS_WORKS"];
+    const [data, setData] = useState([]);
+    const navigate = useNavigate();
+    const columns = ["№", "Имя", "Фамилия", "Отчество", "Предмет", "Работает (да/нет)"];
     useEffect(() =>
         {
             axios.get('/staff_list')
             .then(res => {
-                setData(res.data.staff)
+                setData(res.data.staff);
             })
             .catch(err => {
                 setData(null)
             })
-        }, [])
+        }, [navigate])
     return (
         <TableWrapper>
             { 
                 data ?
                 <DataTable dataHeaders={columns} data={data} />
                 :
-                <p>Записи не найдены {data.length}</p>
+                <p>Записи не найдены</p>
             }
         </TableWrapper>
     )
