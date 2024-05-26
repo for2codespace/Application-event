@@ -14,7 +14,7 @@ export default function EventsListTable() {
     const [date2, setDate2] = useState();
     const [hasData, setHasData] = useState(false);
     const [data, setData] = useState([]);
-    const columns = ["ET_ID", "ET_TYPE", "ET_CLASS", "ET_NAME", "ET_EVENT_DATE", "ET_LOCATION", "ET_CALENDAR_ID"];
+    const columns = ["№", "Название", "Запланировано? (да/нет)", "место проведения", "наличие фото", "внутренняя ссылка", "внешняя ссылка", "студенты", "вид события", "тип события", "комментариии", "преподаватель", "даты начала и конца"];
     const load_data = async () => {
         if (!date1 || !date2) 
             return alert('Выберите даты начала и конца периода')
@@ -25,18 +25,13 @@ export default function EventsListTable() {
         const formattedDate1 = date1AsDate.format('YYYY-MM-DD');
         const formattedDate2 = date2AsDate.format('YYYY-MM-DD');
 
-        axios.get(`/event_list?date_from=${formattedDate1}&date_to=${formattedDate2}`)
+        axios.get(`/event_cards?date_from=${formattedDate1}&date_to=${formattedDate2}`)
         .then(res => {
-            if (res.status === 401) {
-                toast.error("Необходимо авторизоваться");
-                navigate("/auth#redirect=/report");
-            }
-
             if (res.status === 400)
                 toast.error("Введены неверные данные")
 
             if (res.status === 200) {
-                setData(res.data.events);
+                setData(res.data.event_cards);
                 setHasData(true);
                 toast.success("Данные загружены");
             }

@@ -5,7 +5,7 @@ class StudyType(BaseModel):
     __tablename__ = "study_type"
 
     st_id = db.Column(db.Integer, primary_key=True)
-    st_type = db.Column(db.Integer, nullable=False)
+    st_type = db.Column(db.String(50), nullable=False)
 
     def json(self):
         return {

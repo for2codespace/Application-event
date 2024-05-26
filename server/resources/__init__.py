@@ -1,8 +1,7 @@
 from flask_restful import Api
-from .EventList import EventList
 from .EventType import EventType
 from .Groups import Groups
-from .Report import Report
+# from .Report import Report
 from .Staff import Staff
 from .Student import Student
 from .StudentBoard import StudentBoard
@@ -19,11 +18,10 @@ for resource in [
     Logout,
     EventKindList,
     EatList,
-    EventList,
     EventCard,
     EventType,
     Groups,
-    Report,
+    # Report,
     Auth,
     Staff,
     Student,

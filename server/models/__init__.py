@@ -5,7 +5,6 @@ from .DivisionList import DivisionList
 from .EducationalActivitiesType import EducationalActivitiesType
 from .EventCard import EventCard
 from .EventKind import EventKind
-from .EventList import EventList
 from .EventType import EventType
 from .GroupList import GroupList
 from .Involvement import Involvement
