@@ -20,5 +20,5 @@ class Auth(BaseModel):
         if not pbkdf2_sha256.verify(password, user.a_password):
             return False, -1
 
-        return True, user.staff_id
+        return True, user.a_staff_id
         
