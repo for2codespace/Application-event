@@ -24,7 +24,6 @@ class EventCard(BaseModel):
     eС_staff_id = db.Column(db.Integer, db.ForeignKey('staff_list.sl_id'), nullable=False)
     eС_calendar_id = db.Column(db.Integer, db.ForeignKey('calendar.c_id'), nullable=False)
 
-
     def json(self):
         event_act_type = EducationalActivitiesType.get_by_id(self.ec_eat_id)
         event_kind = EventKind.get_by_id(self.ec_ek_id)

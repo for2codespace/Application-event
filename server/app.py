@@ -10,7 +10,7 @@ from resources import api
 from sqlalchemy import text
 
 
-# load_dotenv() # for deployment without docker
+load_dotenv() # for deployment without docker
 
 app = Flask(__name__, static_folder='build/static', template_folder='build')
 CORS(app)
@@ -58,3 +58,7 @@ def catch_all(path):
         return send_file(f'build/{path}')
     else:
         return render_template('index.html')
+
+
+if __name__ == '__main__':
+    app.run(port=5000)
