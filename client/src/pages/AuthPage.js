@@ -45,6 +45,12 @@ export default function AuthPage() {
         })
     }
 
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            login();
+        }
+    });
+
     return(
         <div className="auth">
             <img src="./logo.png" alt="logo" />
