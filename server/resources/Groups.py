@@ -7,8 +7,8 @@ class Groups(Resource):
     path = "/groups"
 
     @classmethod
-    @auth_required
-    def get(cls, id):
+    # @auth_required
+    def get(cls, id=None):
         groupes = GroupListTable.all()
 
         if groupes:

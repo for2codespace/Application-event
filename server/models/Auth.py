@@ -5,9 +5,9 @@ from passlib.hash import pbkdf2_sha256
 class Auth(BaseModel):
     __tablename__ = "auth"
 
-    a_id = db.Column(db.Integer, primary_key=True)
+    a_id       = db.Column(db.Integer, primary_key=True)
     a_staff_id = db.Column(db.Integer, db.ForeignKey('staff_list.sl_id'), nullable=False)
-    a_login = db.Column(db.String(50), nullable=False)
+    a_login    = db.Column(db.String(50), nullable=False)
     a_password = db.Column(db.String(87), nullable=False)
 
     @classmethod
@@ -21,4 +21,3 @@ class Auth(BaseModel):
             return False, -1
 
         return True, user.a_staff_id
-        

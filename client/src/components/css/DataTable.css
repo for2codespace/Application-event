@@ -1,7 +1,7 @@
 .table {
-    position: relative;
-    width: 90%;
-    left: 5%;
-    margin: none;
-    box-sizing: border-box;
+  position: relative;
+  width: 92vw;
+  left: 4vw;
+  box-sizing: border-box;
+  overflow-x: auto;
 }
