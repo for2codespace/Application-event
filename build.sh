@@ -1,9 +1,9 @@
 #!/bin/bash
 
-docker compose down 
-cd client
-npm run build
-cd ../
-rm server/build -r
-cp client/build -r server
-docker compose up -d
+if docker compose build; then
+    echo "build success"
+    docker compose kill
+    docker compose up -d
+else
+    echo "build failed, exit code: $?"
+fi

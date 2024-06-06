@@ -15,25 +15,34 @@ export default function Header({ user }) {
       set_auth(false);
       navigate("/auth");
     });
-  }
+  };
 
   return (
     <>
       <div className="links-container">
-        <a className="link" href="tel:+74950330363" data-sign="whatsapp">Приемная комисия</a>
-        <a className="link" href="tel:+84955000363" data-sign="call">84955000363</a>
-        <a className="link" href="tel:+88005500363" data-sign="call">88005500363</a>
+        <a className="link" href="tel:+74950330363" data-sign="whatsapp">
+          Приемная комиссия
+        </a>
+        <a className="link" href="tel:+84955000363" data-sign="call">
+          84955000363
+        </a>
+        <a className="link" href="tel:+88005500363" data-sign="call">
+          88005500363
+        </a>
         г. Москва
       </div>
       <div className="Header">
         <div className="Logo"></div>
         <div className="Title">
-          Факультет информационных технологий<br />
+          Факультет информационных технологий
+          <br />
           <span className="Subtitle">Отчет по воспитательной работе</span>
         </div>
         <div className="lc">
           {user.name} {user.lastname}
-          <p className="LinkButton small-btn" onClick={logout}>Выйти</p>
+          <p className="LinkButton small-btn" onClick={logout}>
+            Выйти
+          </p>
         </div>
       </div>
       <div className="Divider"></div>
@@ -46,14 +55,19 @@ export default function Header({ user }) {
         <LinkButton url="/report">Отчет</LinkButton>
       </div>
     </>
-  )
+  );
 }
 
-const LinkButton = ({ children, url=null }) => {
+const LinkButton = ({ children, url = null }) => {
   const navigate = useNavigate();
   return (
-    <div className="LinkButton" onClick={() => {navigate(url)}}>
+    <div
+      className="LinkButton"
+      onClick={() => {
+        navigate(url);
+      }}
+    >
       {children}
     </div>
-  )
-}
+  );
+};

@@ -10,5 +10,5 @@ class EventKind(BaseModel):
     def json(self):
         return {
             'ek_id': self.ek_id,
-            'ek_name': self.ek_name
+            'ek_name': self.ek_name.strip()
         }

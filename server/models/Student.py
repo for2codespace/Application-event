@@ -16,9 +16,9 @@ class Student(BaseModel):
     def json(self):
         return {
             "s_id": self.s_id,
-            "s_firstname": self.s_firstname,
-            "s_surname": self.s_surname,
-            "s_lastname": self.s_lastname,
+            "s_firstname": self.s_firstname.strip(),
+            "s_surname": self.s_surname.strip(),
+            "s_lastname": self.s_lastname.strip(),
             "s_group_id": GroupList.get_by_id(self.s_group_id).gl_name,
             "s_study_type_id": StudyType.get_by_id(self.s_study_type_id).st_type
         }

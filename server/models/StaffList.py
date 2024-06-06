@@ -16,9 +16,9 @@ class StaffList(BaseModel):
     def json(self):
         return {
             "sl_id": self.sl_id,
-            "sl_firstname": self.sl_firstname,
-            "sl_surname": self.sl_surname,
-            "sl_lastname": self.sl_lastname,
+            "sl_firstname": self.sl_firstname.strip(),
+            "sl_surname": self.sl_surname.strip(),
+            "sl_lastname": self.sl_lastname.strip(),
             "sl_division_id": DivisionList.get_by_id(self.sl_division_id).dl_name,
             "sl_is_works": "работает" if self.sl_is_works else "не работает"
         }

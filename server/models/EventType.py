@@ -22,7 +22,7 @@ class EventType(BaseModel):
         return {
             "et_id": self.et_id,
             "et_name": self.et_name,
-            "et_location": self.et_location,
+            "et_location": self.et_location.strip(),
             "et_calendar_dates": str_date_range,
             "et_ek_type": event_kind.ek_name
         }

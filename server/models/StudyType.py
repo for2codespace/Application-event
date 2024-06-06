@@ -10,5 +10,5 @@ class StudyType(BaseModel):
     def json(self):
         return {
             "st_id": self.st_id,
-            "st_type": self.st_type
+            "st_type": self.st_type.strip()
         }

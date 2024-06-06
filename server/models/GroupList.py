@@ -11,6 +11,6 @@ class GroupList(BaseModel):
     def json(self):
         return {
             "gl_id": self.gl_id,
-            "gl_name": self.gl_name,
+            "gl_name": self.gl_name.strip(),
             "gl_year": self.gl_year.year
         }

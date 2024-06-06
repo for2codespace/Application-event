@@ -10,5 +10,5 @@ class EducationalActivitiesType(BaseModel):
     def json(self):
         return {
             "eat_id": self.eat_id,
-            "eat_name": self.eat_name
+            "eat_name": self.eat_name.strip()
         }

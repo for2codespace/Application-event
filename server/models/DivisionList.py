@@ -11,6 +11,6 @@ class DivisionList(BaseModel):
     def json(self):
         return {
             "dl_id": self.dl_id,
-            "dl_name": self.dl_name,
+            "dl_name": self.dl_name.strip(),
             "dl_parent_division_id": self.dl_parent_division_id
         }

@@ -29,21 +29,45 @@ class EventCard(BaseModel):
         event_kind = EventKind.get_by_id(self.ec_ek_id)
         staff = StaffListTable.get_by_id(self.eС_staff_id)
         calendar = Calendar.get_by_id(self.eС_calendar_id)
-        students = Involvement.get_by_ec_id(self.ec_id)
+        students_count = Involvement.get_count_by_ec_id(self.ec_id)
         return {
             'ec_id': self.ec_id,
-            'ec_name': self.ec_name,
+            'ec_name': self.ec_name.strip(),
             'ec_is_planned_work': "да" if self.ec_is_planned_work else "нет",
-            'ec_location': self.ec_location,
-            'ec_is_photo_exists': "x" if not self.ec_is_photo_exists else "+",
-            'ec_internal_link': self.ec_internal_link,
-            'ec_external_link': self.ec_external_link,
-            'students': ", ".join([str(st.s_id) for st in students]),
-            'ec_eat_id':  event_act_type.eat_name if event_act_type else None,
-            'ec_ek_id':   event_kind.ek_name  if event_kind else None,
-            'ec_comments': self.ec_comments,
-            "staff": staff.sl_firstname + " " + staff.sl_lastname + " " + staff.sl_surname,
+            'ec_location': self.ec_location.strip(),
+            'ec_is_photo_exists': "-" if not self.ec_is_photo_exists else "+",
+            'ec_internal_link': self.ec_internal_link.strip(),
+            'ec_external_link': self.ec_external_link.strip(),
+            'students': students_count,
+            'ec_eat_id':  event_act_type.eat_name.strip(),
+            'ec_ek_id':   event_kind.ek_name.strip(),
+            'ec_comments': self.ec_comments.strip(),
+            "staff": staff.sl_firstname.strip() + " " + staff.sl_lastname.strip() + " " + staff.sl_surname.strip(),
             "calendar": calendar.json()["c_start_date"] + " - " + calendar.json()["c_end_date"]
+        }
+    
+    def csv_view(self):
+        students_count = Involvement.get_count_by_ec_id(self.ec_id)
+        ec_eat = EducationalActivitiesType.get_by_id(self.ec_eat_id)
+        event_kind = EventKind.get_by_id(self.ec_ek_id)
+        staff = StaffListTable.get_by_id(self.eС_staff_id)
+        staff_fio = staff.sl_firstname.strip() + "  " + staff.sl_lastname.strip() + "  " + staff.sl_surname.strip()
+        calendar = Calendar.get_by_id(self.eС_calendar_id)
+        return {
+            'ec_id': self.ec_id,
+            'ec_name': self.ec_name.strip(),
+            'ec_is_planned_work': "да" if self.ec_is_planned_work else "нет",
+            'ec_location': self.ec_location.strip(),
+            'ec_is_photo_exists': "-" if not self.ec_is_photo_exists else "+",
+            'ec_internal_link': self.ec_internal_link.strip(),
+            'ec_external_link': self.ec_external_link.strip(),
+            'student': students_count,
+            'ec_eat_id': ec_eat.eat_name.strip(),
+            'ec_ek_id': event_kind.ek_name.strip(),
+            'ec_comments': self.ec_comments.strip(),
+            'eС_staff_id': staff_fio,
+            'ec_start_date': calendar.c_start_date.strftime("%Y.%m.%d"),
+            'ec_end_date': calendar.c_end_date.strftime("%Y.%m.%d")
         }
 
     @classmethod

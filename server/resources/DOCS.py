@@ -7,4 +7,4 @@ class Docs(Resource):
 
     @classmethod
     def get(cls):
-        return send_file('./static/docs.html')
+        return send_file('./build/static/docs.html')

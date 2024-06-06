@@ -23,7 +23,7 @@ class Auth(Resource):
         if auth:
             user = StaffListTable.get_by_id(id).json()
             response = make_response({"user": user, "auth": auth}, 200)
-            response.set_cookie("id", str(id))
+            response.set_cookie("id", str(id), httponly=True, secure=True)
             return response
         else:
             return {"message": "login or password is incorrect"}, 401

@@ -18,8 +18,6 @@ class Involvement(BaseModel):
 
 
     @classmethod
-    def get_by_ec_id(cls, ec_id):
-        return [
-            Student.get_by_id(i.i_student_id)
-            for i in cls.query.filter_by(i_ec_id=ec_id)
-        ]
+    def get_count_by_ec_id(cls, ec_id):
+        count = cls.query.filter_by(i_ec_id=ec_id).count()
+        return count
